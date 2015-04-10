@@ -1,0 +1,23 @@
+MACRO
+
+TESTMAC QUERY
+
+MCONSTANT QUERY
+MCOLUMN Timest Dsetup
+
+ODBC;
+  Connect "DSN=GADATA;Description=GADATA;UID=GADATA;PWD=GADATA987;APP=Minitab" &
+  " 17 Statistical Software;WSID=GNL1005XWWDV1;DATABASE=GADATA";
+  SQLString "SELECT ""rt_toollog"".""tool_timestamp"", ""rt_toollog"".""Dsetu" &
+  "p"" FROM ""GADATA"".""RobotGA"".""Robot"" ""Robot"", ""GADATA"".""RobotG" &
+  "A"".""rt_toollog"" ""rt_toollog"" WHERE ""rt_toollog"".""controller_id"" =" &
+  " ""Robot"".""ID"" AND ((""Robot"".""RobotName""='" &
+  QUERY &
+  "')) ORDER BY ""rt" &
+  "_toollog"".""tool_timestamp"" ASC";
+  Columns Timest Dsetup.
+IMRChart Dsetup;
+  Subtitle QUERY;
+  Test 1 5.
+
+ENDMACRO

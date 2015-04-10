@@ -1,0 +1,38 @@
+MACRO
+
+#template
+
+TESTMAC Robotn Appl Subgr
+
+#variables declaration
+
+MCONSTANT Robotn
+MCONSTANT Appl
+MCONSTANT Subgr
+MCOLUMN Cnbd
+
+
+#obcd connection
+ODBC;
+
+  Connect "DSN=GADATA;Description=GADATA;UID=GADATA;PWD=GADATA987;APP=Minitab" &
+  " 17 Statistical Software;WSID=GNL1005XWWDV1;DATABASE=GADATA";
+
+  SQLString "EXEC minitabtest1 @robot = '" & 
+  Robotn & 
+  "', @Appl = '" &
+  Appl &
+    "', @Subgroup = '" &
+  Subgr &
+  "'";
+
+#building chart
+ 
+ Columns Cnbd.
+
+IMRChart Cnbd;
+  Subtitle Robotn;
+
+  Test 1 5.
+
+ENDMACRO

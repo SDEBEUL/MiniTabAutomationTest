@@ -1,0 +1,35 @@
+MACRO
+
+#template
+
+TESTMAC Robotn Toolid
+
+#variables declaration
+
+MCONSTANT Robotn
+MCONSTANT Toolid
+MCOLUMN Timest Dsetup
+
+
+#obcd connection
+ODBC;
+
+  Connect "DSN=GADATA;Description=GADATA;UID=GADATA;PWD=GADATA987;APP=Minitab" &
+  " 17 Statistical Software;WSID=GNL1005XWWDV1;DATABASE=GADATA";
+
+  SQLString "EXEC minitabtest @robot = '" & 
+  Robotn & 
+  "', @tool_id = '" &
+  Toolid &
+  "'";
+
+#building chart
+ 
+ Columns Timest Dsetup.
+
+IMRChart Dsetup;
+  Subtitle Robotn;
+
+  Test 1 5.
+
+ENDMACRO
